@@ -8,45 +8,43 @@
 
     <link rel="shortcut icon" href="assets/img/logo-ilab.png" type="image/x-icon" />
   </head>
+
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a href="#">
-          <img src="assets/img/logo-ilab.png" alt="Logo iLab" width="70" />
-        </a>
-        <div class="d-flex justify-content-center">
-          <ul class="navbar-nav column-gap-3">
+        <img src="assets/img/logo-ilab.png" alt="Logo iLab" width="70" />
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 col justify-content-center">
             <li class="nav-item">
-              <a href="#" aria-current="page" href="#" class="nav-link active text-decoration-none text-black">Home</a>
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a href="#about" aria-current="page" href="#about" class="nav-link text-decoration-none text-black">About Us</a>
+              <a class="nav-link" href="#about">About Us</a>
             </li>
             <li class="nav-item">
-              <a href="#contact" aria-current="page" href="#contact" class="nav-link text-decoration-none text-black">Contact Us</a>
+              <a class="nav-link" href="#contact">Contact</a>
             </li>
           </ul>
-        </div>
-        <div class="g-col-2">
-          <button class="btn btn-outline-secondary" type="submit">Sign Up</button>
-          <button type="button" class="btn btn-info">Log In</button>
+          <form class="d-flex column-gap-2" role="search">
+            <button class="btn btn-secondary" type="submit">Sign Up</button>
+            <button class="btn btn-outline-primary" type="submit">Login</button>
+          </form>
         </div>
       </div>
     </nav>
 
     <!-- Hero -->
-    <div class="p-5 text-center bg-image" style="background-image: url('assets/img/hero.jpg'); height: 400px; object-fit: none">
-      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
-        <div class="d-flex justify-content-start align-items-center h-100">
-          <div class="text-white">
-            <h1 class="mb-3">Heading</h1>
-            <h4 class="mb-3">Subheading</h4>
-            <a class="btn btn-outline-light btn-lg" href="#!" role="button">Call to action</a>
-          </div>
-        </div>
+    <main>
+      <img src="assets/img/hero.jpg" class="img-fluid position-relative" alt="Hero Image" />
+      <div class="text-white position-absolute top-50 start-50 translate-middle">
+        <h1 class="">Heading</h1>
+        <h4 class="">Subheading</h4>
       </div>
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer class="text-center text-lg-start bg-light text-muted">
