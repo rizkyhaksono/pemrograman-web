@@ -1,19 +1,22 @@
-let firstElement = document.getElementById("first");
-let secondElement = document.getElementById("second");
+const firstInput = document.getElementById("first");
+const secondInput = document.getElementById("second");
 
 function getData() {
-  let first = parseFloat(firstElement.value);
-  let second = parseFloat(secondElement.value);
+  const firstNumber = parseFloat(firstInput.value);
+  const secondNumber = parseFloat(secondInput.value);
 
-  if (!first == null || !second == null || !first == NaN || !second == NaN) {
-    let sum = first + second;
-
-    alert("Total: " + sum);
-  } else {
-    alert("Inputan harus terisi");
+  if (isNaN(firstNumber) || isNaN(secondNumber)) {
+    alert("Inputan tidak sesuai");
+    return;
   }
+
+  const product = firstNumber + secondNumber;
+
+  alert(product);
 }
 
 function resetPage() {
-  window.location.reload();
+  firstInput.value = "";
+  secondInput.value = "";
+  resultDisplay.textContent = "";
 }

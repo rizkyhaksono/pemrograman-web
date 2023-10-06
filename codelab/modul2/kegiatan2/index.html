@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validasi</title>
+    <style>
+      body {
+        background-color: #3498db;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      form {
+        background-color: white;
+        padding: 20px;
+        width: 300px;
+        border-radius: 10px;
+      }
+
+      label,
+      input,
+      textarea,
+      input[type="submit"] {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input[type="number"],
+      textarea {
+        width: 100%;
+      }
+
+      input[type="submit"] {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="myForm">
+      <label for="lname">Nama Lengkap</label>
+      <input type="text" id="lname" name="lname" />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" />
+      <label for="alamat">Alamat</label>
+      <textarea id="alamat" name="alamat" cols="21" rows="5"></textarea>
+      <input type="submit" value="Daftar" id="daftar" />
+    </form>
+    <script src="script.js"></script>
+  </body>
+</html>
