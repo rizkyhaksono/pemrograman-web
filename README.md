@@ -59,7 +59,7 @@ This repository contains the source code of the Web Development project using HT
 The project is structured as follows:
 
 - [`codelab` contains codelab.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/codelab)
-- [`demo` contains demo.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/demo/modul1)
+- [`demo` contains demo.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/demo)
 
 ---
 
