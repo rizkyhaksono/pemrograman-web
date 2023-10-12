@@ -6,8 +6,9 @@ document.getElementById("myForm").addEventListener("submit", function (event) {
   var alamat = document.getElementById("alamat").value;
 
   if (lname === "" || email === "" || alamat === "") {
-    alert("Tolong diisi semua bagian");
+    alert("Anda harus mengisi data dengan lengkap !");
   } else {
-    alert("Pesan telah dikirim");
+    alert("Inputan sudah terkirim");
+    console.log("Nama anda: " + lname + "email anda: " + email + "alamat anda: " + alamat);
   }
 });

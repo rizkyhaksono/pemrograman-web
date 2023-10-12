@@ -18,5 +18,4 @@ function getData() {
 function resetPage() {
   firstInput.value = "";
   secondInput.value = "";
-  resultDisplay.textContent = "";
 }
