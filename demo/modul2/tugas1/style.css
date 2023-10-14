@@ -1,43 +1,252 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+* {
   margin: 0;
-  background-color: #f2f2f2;
+  padding: 0;
 }
 
-.calculator {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  text-align: center;
+html {
+  --bg: #f5f6f7;
+  --color-text: #9c9c9c;
+  --color-orange: #ff6a00;
+  --color-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #dfe4ea;
+  --color-inset-shadow: inset -2px -2px 6px rgba(225, 225, 255, 0.8), inset 2px 2px 6px rgba(0, 0, 0, 0.1);
+  --color-equal-shadow: -2px -2px 6px rgba(3, 169, 244, 0.01), 2px 2px 6px rgba(0, 0, 0, 0.3);
+  --color-equal-inset-shadow: inset -2px -2px 6px rgba(225, 106, 0, 0.5), inset 2px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-input {
-  width: 100%;
-  font-size: 24px;
-  padding: 10px;
-  margin-bottom: 10px;
+html[data-theme="dark"] {
+  --bg: #131419;
+  --color-text: #ffffff;
+  --color-orange: #ff6a00;
+  --color-shadow: -3px -3px 10px rgba(225, 255, 255, 0.05), 3px 3px 15px rgba(0, 0, 0, 0.5);
+  --color-inset-shadow: inset -2px -2px 6px rgba(225, 225, 255, 0.01), inset 2px 2px 6px rgba(0, 0, 0, 0.8);
+  --color-equal-shadow: -2px -2px 6px rgba(3, 169, 244, 0.01), 2px 2px 6px rgba(0, 0, 0, 0.8);
+  --color-equal-inset-shadow: inset -2px -2px 6px rgba(255, 100, 0, 0.2), inset 2px 2px 6px rgba(0, 0, 0, 0.5);
 }
 
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+body {
+  background: var(--bg);
+  font-family: "Noto Sans", sans-serif;
 }
 
 button {
-  font-size: 20px;
-  padding: 10px;
-  background-color: #3498db;
-  border: none;
-  border-radius: 5px;
-  color: white;
+  outline: none;
+}
+
+/*  */
+/* Styling for the modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 20% auto;
+  padding: 20px;
+  width: 60%;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  float: right;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #2980b9;
+/* Styling for the menu button */
+button {
+  padding: 10px 20px;
+  background-color: #0078d4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.main {
+  width: 300px;
+  height: 560px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  background: var(--bg);
+  box-shadow: var(--color-shadow);
+  overflow: hidden;
+}
+
+.heading {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 0 20px;
+}
+
+.heading span {
+  color: var(--color-text);
+  font-size: 18px;
+}
+
+.heading span:nth-child(1),
+.heading span:nth-child(3) {
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.heading span:nth-child(2) {
+  margin-top: 5px;
+}
+
+.heading span:nth-child(2)::after {
+  width: 115px;
+  content: "";
+  position: absolute;
+  bottom: -5%;
+  border-bottom: 3px solid var(--color-orange);
+  z-index: 100;
+  left: 30%;
+  border-radius: 10px;
+}
+
+.result {
+  height: 30%;
+  position: relative;
+  background: var(--bg);
+  border-top: 3px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.05);
+}
+
+.upper-value {
+  position: absolute;
+  text-align: right;
+  bottom: 30%;
+  right: 5%;
+  font-size: 32px;
+  color: var(--color-text);
+}
+
+.lower-value {
+  position: absolute;
+  text-align: right;
+  bottom: 2%;
+  right: 5%;
+  font-size: 32px;
+  color: var(--color-text);
+}
+
+#keyboard {
+  padding: 30px 20px;
+}
+
+.operator,
+.number {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--bg);
+  font-weight: 900;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: var(--color-shadow);
+}
+
+.group {
+  width: 185px;
+  float: left;
+}
+
+.top-section {
+  height: auto;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  padding: 4px 6px;
+  border-radius: 30px;
+  margin-left: 10px;
+  background: var(--bg);
+  box-shadow: var(--color-shadow);
+}
+
+.top-section button {
+  margin-top: 2px;
+}
+
+.middle-section {
+  height: auto;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 30px;
+  margin-top: 3px;
+  margin-left: 10.4px;
+}
+
+.middle-section button {
+  margin: 3px 5px;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.side-section {
+  float: left;
+  height: 254px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 4px;
+  border-radius: 30px;
+  justify-content: space-between;
+  margin-left: 10px;
+  background: var(--bg);
+  box-shadow: var(--color-shadow);
+}
+
+.side-section button {
+  margin-left: 2px;
+}
+
+.equal {
+  background-color: var(--color-orange);
+  color: #fff !important;
+  box-shadow: var(--color-equal-shadow);
+}
+
+.operator {
+  color: var(--color-orange);
+}
+
+.operator:active,
+.number:active,
+.operator:hover,
+.number:hover {
+  box-shadow: var(--color-inset-shadow);
+}
+
+.equal:active,
+.equal:hover {
+  background: var(--color-orange);
+  box-shadow: var(--color-equal-inset-shadow);
+}
+
+.fas {
+  cursor: pointer;
+}
+
+label input[type="checkbox"] {
+  appearance: none;
+}
+
+label input[type="checkbox"]:checked ~ .fas {
+  color: var(--color-orange);
 }
