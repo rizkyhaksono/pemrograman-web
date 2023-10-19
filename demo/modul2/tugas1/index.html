@@ -9,17 +9,20 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <button id="openModalButton">Open Modal</button>
-
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close" id="closeModalButton">&times;</span>
-        <p>This is a modal dialog.</p>
-      </div>
-    </div>
     <div class="main">
       <div class="heading">
-        <span class="btn-menu"><i class="fas fa-bars" onclick="onClickMenu()"></i></span>
+        <!-- Modal -->
+        <span class="btn-menu"><i class="fas fa-bars"></i></span>
+
+        <div class="modal" id="myModal">
+          <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <address class="author">By <a rel="author" href="https://github.com/rizkyhaksono" style="font-style: normal; text-decoration: none">Rizky Haksono</a></address>
+            on <time pubdate datetime="2023-10-15" title="October 15th, 2023">15/10/23</time>
+          </div>
+        </div>
+
+        <!-- Calculator -->
         <span>Calculator</span>
         <span>
           <label>

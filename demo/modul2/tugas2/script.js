@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const addButton = document.getElementById("add");
   const taskList = document.getElementById("taskList");
 
-  // Mengambil tugas dari local storage saat halaman dimuat
+  // Get tasks from local storage when the page loads
   const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-  // Menampilkan tugas yang ada di local storage
+  // Display tasks from local storage
   tasks.forEach((taskText) => {
     addTask(taskText);
   });
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const taskText = taskInput.value.trim();
 
     if (taskText === "") {
-      alert("Tolong isi tugas terlebih dahulu.");
+      alert("Please enter a task.");
     } else {
       addTask(taskText);
       tasks.push(taskText);
@@ -26,44 +26,64 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function addTask(text) {
     const listItem = document.createElement("li");
-    const taskText = document.createElement("span");
-    taskText.textContent = text;
+    listItem.style.display = "flex";
+    listItem.style.justifyContent = "start";
+
+    const taskInput = document.createElement("input");
+    taskInput.className = "form-control";
+
+    taskInput.disabled = "disabled";
+    taskInput.type = "text";
+    taskInput.value = text;
 
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
     editButton.className = "edit";
+    editButton.innerHTML = '<i class="fas fa-edit"></i>';
     editButton.addEventListener("click", function () {
-      editTask(listItem, taskText);
+      editTask(taskInput, listItem);
     });
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.className = "delete";
+    deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
     deleteButton.addEventListener("click", function () {
-      deleteTask(listItem);
+      deleteTask(listItem, taskInput.value);
     });
 
-    listItem.appendChild(taskText);
+    listItem.appendChild(taskInput);
     listItem.appendChild(editButton);
     listItem.appendChild(deleteButton);
     taskList.appendChild(listItem);
   }
 
-  function editTask(listItem, taskText) {
-    const newText = prompt("Edit task:", taskText.textContent);
-    if (newText !== null && newText.trim() !== "") {
-      taskText.textContent = newText;
-      // Perbarui tugas di local storage
-      tasks[tasks.indexOf(taskText.textContent)] = newText;
-      localStorage.setItem("tasks", JSON.stringify(tasks));
+  function editTask(taskInput) {
+    taskInput.removeAttribute("readonly");
+    taskInput.focus();
+
+    const index = tasks.indexOf(taskInput.value);
+    if (index !== -1) {
+      const editedText = prompt("Edit task:", taskInput.value);
+      if (editedText !== null) {
+        taskInput.value = editedText;
+        taskInput.setAttribute("readonly", true);
+        updateTask(index, editedText);
+      }
     }
   }
 
-  function deleteTask(listItem) {
-    const deletedTask = listItem.firstChild.textContent;
-    listItem.remove();
-    // Hapus tugas dari local storage
-    tasks.splice(tasks.indexOf(deletedTask), 1);
+  function updateTask(index, newText) {
+    tasks[index] = newText;
     localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+
+  function deleteTask(listItem, taskText) {
+    const index = tasks.indexOf(taskText);
+    if (index !== -1) {
+      tasks.splice(index, 1);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+    listItem.remove();
   }
 });

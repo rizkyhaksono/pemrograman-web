@@ -7,6 +7,24 @@ checkbox.addEventListener("change", function () {
   }
 });
 
+var hamburgerBtn = document.getElementsByClassName("btn-menu")[0];
+var modal = document.getElementById("myModal");
+var closeModal = document.getElementById("closeModal");
+
+hamburgerBtn.addEventListener("click", function () {
+  modal.style.display = "block";
+});
+
+closeModal.addEventListener("click", function () {
+  modal.style.display = "none";
+});
+
+window.addEventListener("click", function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+});
+
 function getHistory() {
   return document.querySelector(".upper-value").innerHTML;
 }
@@ -32,44 +50,18 @@ function getFormattedNumber(num) {
     return "";
   }
   var n = Number(num);
-  var value = n.toLocaleString("en"); // mengembalikan string di tampilan layar dari angka tsb.
+  var value = n.toLocaleString("en");
 
   return value;
 }
 
 function reverseNumberFormat(num) {
-  return Number(num.replace(/,/g, "")); //memberikan nilai koma yg terpisah
+  return Number(num.replace(/,/g, ""));
 }
-
-var hamburgerBtn = document.getElementsByClassName("btn-menu");
-
-function onClickMenu() {
-  alert("Hai" + hamburgerBtn);
-}
-
-// Get the modal and button elements
-var modal = document.getElementById("myModal");
-var openModalButton = document.getElementById("openModalButton");
-var closeModalButton = document.getElementById("closeModalButton");
-
-// Open the modal when the button is clicked
-openModalButton.onclick = function () {
-  modal.style.display = "block";
-};
-
-// Close the modal when the close button is clicked
-closeModalButton.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Close the modal if the user clicks outside of it
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
 
 var operator = document.getElementsByClassName("operator");
+
+var useVisualOperator = false;
 
 for (var i = 0; i < operator.length; i++) {
   operator[i].addEventListener("click", function () {
@@ -79,7 +71,7 @@ for (var i = 0; i < operator.length; i++) {
     } else if (this.id == "backspace") {
       var output = reverseNumberFormat(getOutput()).toString();
       if (output) {
-        output = output.substr(0, output.length - 1);
+        output = output.substring(0, output.length - 1);
         printOutput(output);
       }
     } else {
@@ -87,20 +79,37 @@ for (var i = 0; i < operator.length; i++) {
       var history = getHistory();
       if (output == "" && history != "") {
         if (isNaN(history[history.length - 1])) {
-          history = history.substr(0, history.length - 1);
+          history = history.substring(0, history.length - 1);
         }
       }
       if (output != "" || history != "") {
         output = output == "" ? output : reverseNumberFormat(output);
         history = history + output;
         if (this.id == "=") {
-          Let = result = eval(history);
+          var result;
+          if (useVisualOperator) {
+            history = history.replace(/\^/g, "**");
+            result = eval(history);
+            history = history.replace(/\*\*/g, "^");
+          } else {
+            result = eval(history);
+          }
           printOutput(result);
           printHistory("");
         } else if (this.id == "%") {
-          Let = n = reverseNumberFormat(getOutput());
-          Let = percent = n / 100;
+          var n = reverseNumberFormat(getOutput());
+          var input = getOutput();
+          var percent = n / 100;
           printOutput(percent.toFixed(4));
+          console.log(input);
+        } else if (this.id == "^") {
+          if (useVisualOperator) {
+            history = history.replace(/\^/g, "**");
+          }
+          history = history + "^";
+          printHistory(history);
+          printOutput("");
+          useVisualOperator = true;
         } else {
           history = history + this.id;
           printHistory(history);
@@ -110,11 +119,11 @@ for (var i = 0; i < operator.length; i++) {
     }
   });
 }
+
 var number = document.getElementsByClassName("number");
-for (Let = i = 0; i < number.length; i++) {
+for (var i = 0; i < number.length; i++) {
   number[i].addEventListener("click", function () {
     var output = reverseNumberFormat(getOutput());
-    //jika output adalah angka
     if (output != NaN) {
       output = output + this.id;
       printOutput(output);
