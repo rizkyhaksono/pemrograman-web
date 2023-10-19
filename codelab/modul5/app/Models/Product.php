@@ -2,7 +2,8 @@
 
 namespace app\Models;
 
-include '/2-workstation/3-kuliah/semester-5/pemrograman-web/codelab/modul5/app/Config/DatabaseConfig.php';
+// include '/2-workstation/3-kuliah/semester-5/pemrograman-web/codelab/modul5/app/Config/DatabaseConfig.php';
+include 'Config/DatabaseConfig.php';
 
 use app\Config\DatabaseConfig;
 use mysqli;
