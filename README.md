@@ -81,13 +81,13 @@ The project is structured as follows:
 
 ## Endpoints Modul 5
 
-| Endpoints   | Responses                                       |
-| ----------- | ----------------------------------------------- |
-| GET         | http://localhost:8000/api/v1/product-category   |
-| GET {id}    | http://localhost:8000/api/v1/product-category/1 |
-| POST        | http://localhost:8000/api/v1/product-category   |
-| PUT {id}    | http://localhost:8000/api/v1/product-category/1 |
-| DELETE {id} | http://localhost:8000/api/v1/product-category/1 |
+| Endpoints   | Responses                           |
+| ----------- | ----------------------------------- |
+| GET         | http://localhost:8000/api/product   |
+| GET {id}    | http://localhost:8000/api/product/1 |
+| POST        | http://localhost:8000/api/product   |
+| PUT {id}    | http://localhost:8000/api/product/1 |
+| DELETE {id} | http://localhost:8000/api/product/2 |
 
 ## Endpoints Modul 6
 
