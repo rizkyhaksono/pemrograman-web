@@ -28,7 +28,7 @@ class ProductController
   public function getById($id)
   {
     $productModel = new Product();
-    $response = $productModel->findAll($id);
+    $response = $productModel->findById($id);
     return $this->apiResponse(200, "success", $response);
   }
 
