@@ -27,17 +27,18 @@ This repository contains the source code of the Web Development project using HT
 
 ## Table of Contents
 
-| No. | Title                                 | Description                          |
-| --- | ------------------------------------- | ------------------------------------ |
-| 1   | [Getting Started](#getting-started)   | How to run this project              |
-| 2   | [Prerequisites](#prerequisites)       | What you need to run this project    |
-| 3   | [Installing](#installing)             | How to install this project          |
-| 4   | [Folder Structure](#folder-structure) | The structure of this project        |
-| 5   | [Code of Conduct](#code-of-conduct)   | The code of conduct for this project |
-| 6   | [Security Policy](#security-policy)   | The security policy for this project |
-| 7   | [Contributing](#contributing)         | How to contribute to this project    |
-| 8   | [License](#license)                   | The license for this project         |
-| 9   | [Acknowledgments](#acknowledgments)   | Credits and inspiration              |
+| No. | Title                                   | Description                          |
+| --- | --------------------------------------- | ------------------------------------ |
+| 1   | [Getting Started](#getting-started)     | How to run this project              |
+| 2   | [Prerequisites](#prerequisites)         | What you need to run this project    |
+| 3   | [Installing](#installing)               | How to install this project          |
+| 4   | [Folder Structure](#folder-structure)   | The structure of this project        |
+| 5   | [Endpoints Modul 5](#endpoints-modul-5) | The structure of this project        |
+| 6   | [Endpoints Modul 6](#endpoints-modul-6) | The structure of this project        |
+| 7   | [Code of Conduct](#code-of-conduct)     | The code of conduct for this project |
+| 8   | [Security Policy](#security-policy)     | The security policy for this project |
+| 9   | [Contributing](#contributing)           | How to contribute to this project    |
+| 10  | [License](#license)                     | The license for this project         |
 
 ## Getting Started
 
@@ -45,6 +46,11 @@ This repository contains the source code of the Web Development project using HT
 
 - HTML 5
 - CSS 3
+- Javascript
+- PHP
+- Laravel
+- Composer
+- ReactJS
 - IDE (VSCode, etc.)
 
 ### Installing
@@ -58,34 +64,56 @@ This repository contains the source code of the Web Development project using HT
 
 The project is structured as follows:
 
-- [`codelab` contains codelab.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/codelab)
-- [`demo` contains demo.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/demo)
+- [`codelab` contains directory Codelab.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/codelab)
+  - [`codelab modul1` contains Codelab Modul 1.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/codelab/modul1)
+  - [`codelab modul2` contains Codelab Modul 2.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/codelab/modul2)
+  - [`codelab modul3` contains Codelab Modul 3.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/codelab)
+  - [`codelab modul4` contains Codelab Modul 4.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/codelab/modul4)
+  - [`codelab modul5` contains Codelab Modul 5.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/codelab/modul5/app)
+  - [`codelab modul6` contains Codelab Modul 6.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/codelab/modul6/praktikum-laravel)
+- [`demo` contains directory Demo.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/demo)
+  - [`demo modul1` contains Demo Modul 1.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/demo/modul1)
+  - [`demo modul2` contains Demo Modul 2.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/demo/modul2)
+  - [`demo modul3` contains Demo Modul 3.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/demo)
+  - [`demo modul4` contains Demo Modul 4.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/demo)
+  - [`demo modul5` contains Demo Modul 5.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/demo)
+  - [`demo modul6` contains Demo Modul 6.](https://github.com/rizkyhaksono/pemrograman-web/tree/main/demo)
 
----
+## Endpoints Modul 5
+
+| Endpoints   | Responses                                       |
+| ----------- | ----------------------------------------------- |
+| GET         | http://localhost:8000/api/v1/product-category   |
+| GET {id}    | http://localhost:8000/api/v1/product-category/1 |
+| POST        | http://localhost:8000/api/v1/product-category   |
+| PUT {id}    | http://localhost:8000/api/v1/product-category/1 |
+| DELETE {id} | http://localhost:8000/api/v1/product-category/1 |
+
+## Endpoints Modul 6
+
+| Endpoints   | Responses                                       |
+| ----------- | ----------------------------------------------- |
+| GET         | http://localhost:8000/api/v1/product-category   |
+| GET {id}    | http://localhost:8000/api/v1/product-category/1 |
+| POST        | http://localhost:8000/api/v1/product-category   |
+| PUT {id}    | http://localhost:8000/api/v1/product-category/1 |
+| DELETE {id} | http://localhost:8000/api/v1/product-category/1 |
 
 ## Code of Conduct
 
 Please read the [Code of Conduct]() before contributing to this project.
 
----
-
 ## Security Policy
 
 Please read the [Security Policy]() before contributing to this project.
-
----
 
 ## Contributing
 
 Please read the [Contributing Guidelines]() before contributing to this project.
 
----
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/rizkyhaksono/pemrograman-web/blob/main/LICENSE) file for details.
-
----
 
 <!-- ## Acknowledgments -->
 
