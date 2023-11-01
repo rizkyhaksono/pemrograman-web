@@ -10,6 +10,7 @@ module.exports = {
         primary: "#40AD3E",
         secondary: "#074C06",
         login: "#6d85ec",
+        backgroundAbout: "#383838",
       },
     },
   },

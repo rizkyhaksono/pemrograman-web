@@ -1,11 +1,11 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/home/home";
-import AboutPage from "./pages/about/about";
-import ContactPage from "./pages/contact/contact";
-import ProjectPage from "./project/project";
-import NotFoundPage from "./pages/not_found/not_found";
+import HomePage from "./pages/home";
+import AboutPage from "./pages/about";
+import ContactPage from "./pages/contact";
+import NotFoundPage from "./pages/not_found";
+import SignUpPage from "./pages/sign_up";
+import LoginPage from "./pages/sign_in";
 
 function App() {
   return (
@@ -15,7 +15,8 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/project" element={<ProjectPage />} />
+        <Route path="/sign_up" element={<SignUpPage />} />
+        <Route path="/login" element={<LoginPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
