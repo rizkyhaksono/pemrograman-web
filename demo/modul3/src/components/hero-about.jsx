@@ -10,20 +10,20 @@ function HeroAbout() {
 
         <img src="/images/logo_lab_it_baru.png" className="container max-w-screen-2xl bg-no-repeat rounded-2xl p-20 my-10 bg-backgroundAbout" alt="" />
 
-        <div className="text-backgroundAbout">
-          <h4>a. Laboratorium Rekayasa Perangkat Lunak</h4>
+        <div className="text-backgroundAbout text-xl">
+          <p className="mt-4">a. Laboratorium Rekayasa Perangkat Lunak</p>
           <p>Melakukan analisa kelayakan pembuatan, penerapan proyek perangkat lunak, analisa kebutuhan, perancangan, pembuatan dan penjaminan kualitas perangkat lunak serta melakukan rekayasa ulang perangkat lunak.</p>
 
-          <h4>b. Laboratorium Sistem dan Keamanan Jaringan</h4>
+          <p className="mt-4">b. Laboratorium Sistem dan Keamanan Jaringan</p>
           <p>Menganalisis permasalahan, memberikan solusi berupa perekayasaan, pembuatan dan pengelolaan, serta melakukan evaluasi pada sistem jaringan.</p>
 
-          <h4>c. Laboratorium Game Cerdas</h4>
+          <p className="mt-4">c. Laboratorium Game Cerdas</p>
           <p>
             Bekerja dengan tim mengembangkan dan merancang video game. Mengkoordinasikan tugas kompleks menciptakan video game baru yang memiliki tugas seperti merancang karakter, level, teka-teki, art dan animasi. Software Engineer,
             Programmer, atau Computer Scientist yang terutama mengembangkan basis kode untuk video game atau perangkat lunak terkait, seperti alat-alat pengembangan game.
           </p>
 
-          <h4>d. Laboratorium Sains Data</h4>
+          <p className="mt-4">d. Laboratorium Sains Data</p>
           <p>Menganalisis dan mengolah data menjadi suatu informasi dan pengetahuan.</p>
         </div>
       </div>
