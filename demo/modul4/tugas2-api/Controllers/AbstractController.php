@@ -4,8 +4,8 @@ namespace Controller;
 
 abstract class AbstractController
 {
-  var $ControllerName;
-  var $FunctionName;
-  var $HTTPMethod;
+  protected $ControllerName;
+  protected $FunctionName;
+  protected $HTTPMethod;
   abstract public function getControllerAttribute($function, $method);
 }

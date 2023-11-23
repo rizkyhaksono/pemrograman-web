@@ -6,5 +6,5 @@ use Controller\AnimalController;
 
 $AniController = new AnimalController;
 
-echo $AniController->getAllAnimal();
-// echo $AniController->getAllAnimal(1);
+// echo $AniController->getAllAnimal();
+echo $AniController->getAnimalById(2);

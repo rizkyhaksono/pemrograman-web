@@ -1,5 +1,5 @@
 <?php
-function generator($n = 15)
+function generator($n = 43)
 {
   for ($i = 1; $i <= $n; $i++) {
     $output = '';

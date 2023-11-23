@@ -11,7 +11,9 @@ class Animals
       ["name" => "Crocodile", "age" => 3],
       ["name" => "Snake", "age" => 8],
       ["name" => "Dog", "age" => 5],
-      ["name" => "Chicken", "age" => 2]
+      ["name" => "Chicken", "age" => 2],
+      ["name" => "Ant", "age" => 1],
+      ["name" => "Sheep", "age" => 2],
     ];
 
     return $animals;

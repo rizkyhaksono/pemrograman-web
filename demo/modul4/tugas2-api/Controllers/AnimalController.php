@@ -7,13 +7,11 @@ include "/2-workstation/3-kuliah/semester-5/pemrograman-web/demo/modul4/tugas2-a
 include "/2-workstation/3-kuliah/semester-5/pemrograman-web/demo/modul4/tugas2-api/Traits/ResponsiveFormatter.php";
 
 use Models\Animals;
-
 use Traits\ResponseFormatter;
 
 class AnimalController extends Controller
 {
   use ResponseFormatter;
-
 
   public function __construct()
   {
@@ -32,7 +30,7 @@ class AnimalController extends Controller
     return $this->responseFormatter(200, "Success", $response);
   }
 
-  public function getModById($index)
+  public function getAnimalById($index)
   {
     $ani = new Animals;
     $animals = $ani->animalList();
@@ -41,7 +39,7 @@ class AnimalController extends Controller
       "data" => null
     ];
     if ($index < count($animals)) {
-      $response["data"] = $animals[$index - 1];
+      $response["data"] = $animals[$index];
       return $this->responseFormatter(200, "Success", $response);
     } else {
       return $this->responseFormatter(400, "Bad Request", $response);
