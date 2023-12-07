@@ -2,8 +2,8 @@
 
 namespace app\Controller;
 
-include 'Traits/ApiResponseFormatter.php';
-include 'Models/Authors.php';
+require_once 'Traits/ApiResponseFormatter.php';
+require_once 'Models/Authors.php';
 
 use app\Models\Authors;
 use app\Traits\ApiResponseFormatter;
@@ -83,10 +83,10 @@ class AuthorsController
   public function delete($id)
   {
     $authorModel = new Authors();
-    $isDeleted = $authorModel->destroy($id);
+    $deletedData = $authorModel->destroy($id);
 
-    if ($isDeleted) {
-      return $this->apiResponse(200, "success", ["deleted_author_id" => $id]);
+    if ($deletedData  !== null) {
+      return $this->apiResponse(200, "success", ["deleted_author" => $deletedData]);
     } else {
       return $this->apiResponse(404, "not found", null);
     }

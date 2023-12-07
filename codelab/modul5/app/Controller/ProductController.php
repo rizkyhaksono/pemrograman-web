@@ -2,9 +2,7 @@
 
 namespace app\Controller;
 
-// include '/2-workstation/3-kuliah/semester-5/pemrograman-web/codelab/modul5/app/Traits/ApiResponseFormatter.php';
 include 'Traits/ApiResponseFormatter.php';
-// include '/2-workstation/3-kuliah/semester-5/pemrograman-web/codelab/modul5/app/Models/Product.php';
 include 'Models/Product.php';
 
 use app\Models\Product;
@@ -12,16 +10,12 @@ use app\Traits\ApiResponseFormatter;
 
 class ProductController
 {
-  // use trait
   use ApiResponseFormatter;
 
   public function index()
   {
-    // define object model
     $productModel = new Product();
-    // call all get function product
     $response = $productModel->findAll();
-    // return value
     return $this->apiResponse(200, "success", $response);
   }
 

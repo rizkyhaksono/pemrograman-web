@@ -2,7 +2,7 @@
 
 namespace app\Models;
 
-include 'Config/DatabaseConfig.php';
+require_once 'Config/DatabaseConfig.php';
 
 use app\Config\DatabaseConfig;
 use mysqli;
@@ -71,19 +71,33 @@ class Authors extends DatabaseConfig
     $name = $data['name'];
     $bio = $data['bio'];
 
-    $query = "UPDATE authors SET name = ?, bio = ?, WHERE id = ?";
+    $query = "UPDATE authors SET name = ?, bio = ? WHERE id = ?";
     $stmt = $this->conn->prepare($query);
-    $stmt->bind_param("ss", $name, $bio);
+    $stmt->bind_param("ssi", $name, $bio, $id);
     $stmt->execute();
     $stmt->close();
+
+    $updatedData = $this->findById($id);
+    return $updatedData;
   }
 
   public function destroy($id)
   {
+    $dataToDelete = $this->findById($id);
+    if (!$dataToDelete) {
+      return null;
+    }
+
     $query = "DELETE FROM authors WHERE id = ?";
     $stmt =  $this->conn->prepare($query);
     $stmt->bind_param("i", $id);
-    $stmt->execute();
+    $isDeleted = $stmt->execute();
     $this->conn->close();
+
+    if ($isDeleted) {
+      return $dataToDelete;
+    } else {
+      return null;
+    }
   }
 }

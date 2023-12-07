@@ -7,7 +7,7 @@ require_once 'Config/DatabaseConfig.php';
 use app\Config\DatabaseConfig;
 use mysqli;
 
-class Books extends DatabaseConfig
+class BooksAuthor extends DatabaseConfig
 {
   public $conn;
 
@@ -21,12 +21,8 @@ class Books extends DatabaseConfig
 
   public function findAll()
   {
-    // join relation
-    $sql = "SELECT books.*, authors.name as author_name, genres.name as genre_name
-            FROM books
-            LEFT JOIN books_authors ON books.id = books_authors.book_id
-            LEFT JOIN authors ON books_authors.author_id = authors.id
-            LEFT JOIN genres ON books.genre_id = genres.id";
+    $sql = "SELECT books_authors.*
+            FROM books_authors";
 
     $result = $this->conn->query($sql);
 
@@ -40,12 +36,9 @@ class Books extends DatabaseConfig
 
   public function findById($id)
   {
-    $sql = "SELECT books.*, authors.name as author_name, genres.name as genre_name
-            FROM books
-            LEFT JOIN books_authors ON books.id = books_authors.book_id
-            LEFT JOIN authors ON books_authors.author_id = authors.id
-            LEFT JOIN genres ON books.genre_id = genres.id
-            WHERE books.id = ?";
+    $sql = "SELECT books_authors.*
+            FROM books_authors
+            WHERE books_authors.book_id = ?";
 
     $stmt = $this->conn->prepare($sql);
     $stmt->bind_param("i", $id);
@@ -62,14 +55,13 @@ class Books extends DatabaseConfig
 
   public function create($data)
   {
-    $title = $data['title'];
-    $description = $data['description'];
-    $ISBN = $data['ISBN'];
-    $genreId = $data['genre_id'];
+    $book_id = $data['book_id'];
+    $author_id = $data['author_id'];
+    $is_main_author = $data['is_main_author'];
 
-    $query = "INSERT INTO books (title, description, ISBN, genre_id) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO books_authors (book_id, author_id, is_main_author) VALUES (?, ?, ?)";
     $stmt = $this->conn->prepare($query);
-    $stmt->bind_param("sssi", $title, $description, $ISBN, $genreId);
+    $stmt->bind_param("iii", $book_id, $author_id, $is_main_author);
     $stmt->execute();
     $this->conn->close();
     return $stmt->insert_id;
@@ -77,14 +69,13 @@ class Books extends DatabaseConfig
 
   public function update($data, $id)
   {
-    $title = $data['title'];
-    $description = $data['description'];
-    $ISBN = $data['ISBN'];
-    $genreId = $data['genre_id'];
+    $book_id = $data['book_id'];
+    $author_id = $data['author_id'];
+    $is_main_author = $data['is_main_author'];
 
-    $query = "UPDATE books SET title = ?, description = ?, ISBN = ?, genre_id = ? WHERE id = ?";
+    $query = "UPDATE books_authors SET book_id = ?, author_id = ?, is_main_author = ? WHERE book_id = ?";
     $stmt = $this->conn->prepare($query);
-    $stmt->bind_param("ssssi", $title, $description, $ISBN, $genreId, $id);
+    $stmt->bind_param("iiii", $book_id, $author_id, $is_main_author, $id);
     $stmt->execute();
     $stmt->close();
 
@@ -99,7 +90,7 @@ class Books extends DatabaseConfig
       return null;
     }
 
-    $query = "DELETE FROM books WHERE id = ?";
+    $query = "DELETE FROM books_authors WHERE book_id = ?";
     $stmt = $this->conn->prepare($query);
     $stmt->bind_param("i", $id);
     $stmt->execute();

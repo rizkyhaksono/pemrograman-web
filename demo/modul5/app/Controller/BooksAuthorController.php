@@ -3,26 +3,26 @@
 namespace app\Controller;
 
 require_once 'Traits/ApiResponseFormatter.php';
-require_once 'Models/Books.php';
+require_once 'Models/BooksAuthor.php';
 
-use app\Models\Books;
+use app\Models\BooksAuthor;
 use app\Traits\ApiResponseFormatter;
 
-class BooksController
+class BooksAuthorController
 {
   use ApiResponseFormatter;
 
-  private $booksModel;
+  private $bookAuthorModel;
 
   public function __construct()
   {
-    $this->booksModel = new Books();
+    $this->bookAuthorModel = new BooksAuthor();
   }
 
   public function index()
   {
     try {
-      $response = $this->booksModel->findAll();
+      $response = $this->bookAuthorModel->findAll();
       return $this->apiResponse(200, "success", $response);
     } catch (\Exception $e) {
       return $this->apiResponse(500, "error", null, $e->getMessage());
@@ -32,10 +32,10 @@ class BooksController
   public function getById($id)
   {
     try {
-      $response = $this->booksModel->findById($id);
+      $response = $this->bookAuthorModel->findById($id);
 
       if (!$response) {
-        return $this->apiResponse(404, "not found", null);
+        return $this->apiResponse(404, "not found", $response);
       }
 
       return $this->apiResponse(200, "success", $response);
@@ -53,15 +53,14 @@ class BooksController
       return $this->apiResponse(400, "error invalid input", null);
     }
 
-    $booksModel = new Books();
-    $createdBookId = $booksModel->create([
-      "title" => $inputData['title'],
-      "description" => $inputData['description'],
-      "ISBN" => $inputData['ISBN'],
-      "genre_id" => $inputData['genre_id']
+    $bookAuthorModel = new BooksAuthor();
+    $createAuthorId = $bookAuthorModel->create([
+      "book_id" => $inputData['book_id'],
+      "author_id" => $inputData['author_id'],
+      "is_main_author" => $inputData['is_main_author']
     ]);
 
-    return $this->apiResponse(201, "success", $createdBookId);
+    return $this->apiResponse(201, "success", $createAuthorId);
   }
 
   public function update($id)
@@ -73,25 +72,23 @@ class BooksController
       return $this->apiResponse(400, "error invalid input", null);
     }
 
-    $booksModel = new Books();
-    $response = $booksModel->update([
-      "title" => $inputData['title'],
-      "description" => $inputData['description'],
-      "ISBN" => $inputData['ISBN'],
-      "genre_id" => $inputData['genre_id'],
+    $bookAuthorModel = new BooksAuthor();
+    $response = $bookAuthorModel->update([
+      "book_id" => $inputData['book_id'],
+      "author_id" => $inputData['author_id'],
+      "is_main_author" => $inputData['is_main_author']
     ], $id);
 
     return $this->apiResponse(200, "success", $response);
   }
 
-
   public function delete($id)
   {
-    $bookModel = new Books();
-    $deletedData = $bookModel->destroy($id);
+    $bookAuthorModel = new BooksAuthor();
+    $deletedData = $bookAuthorModel->destroy($id);
 
     if ($deletedData  !== null) {
-      return $this->apiResponse(200, "success", ["deleted_book" => $deletedData]);
+      return $this->apiResponse(200, "success", ["deleted_books_author" => $deletedData]);
     } else {
       return $this->apiResponse(404, "not found", null);
     }

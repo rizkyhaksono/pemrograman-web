@@ -2,7 +2,7 @@
 
 namespace app\Models;
 
-include 'Config/DatabaseConfig.php';
+require_once 'Config/DatabaseConfig.php';
 
 use app\Config\DatabaseConfig;
 use mysqli;
@@ -21,15 +21,8 @@ class Genres extends DatabaseConfig
 
   public function findAll()
   {
-    // with relations
-    $sql = "SELECT books.*, authors.name as author_name, genres.name as genre_name
-            FROM books
-            LEFT JOIN books_authors ON books.id = books_authors.book_id
-            LEFT JOIN authors ON books_authors.author_id = authors.id
-            LEFT JOIN genres ON books.genre_id = genres.id";
-
-    // no relation
-    // $sql = "SELECT * FROM books";
+    $sql = "SELECT genres.*
+            FROM genres";
 
     $result = $this->conn->query($sql);
 
@@ -43,12 +36,9 @@ class Genres extends DatabaseConfig
 
   public function findById($id)
   {
-    $sql = "SELECT books.*, authors.name as author_name, genres.name as genre_name
-            FROM books
-            LEFT JOIN books_authors ON books.id = books_authors.book_id
-            LEFT JOIN authors ON books_authors.author_id = authors.id
-            LEFT JOIN genres ON books.genre_id = genres.id
-            WHERE books.id = ?";
+    $sql = "SELECT genres.*
+            FROM genres
+            WHERE genres.id = ?";
 
     $stmt = $this->conn->prepare($sql);
     $stmt->bind_param("i", $id);
@@ -65,14 +55,12 @@ class Genres extends DatabaseConfig
 
   public function create($data)
   {
-    $title = $data['title'];
+    $name = $data['name'];
     $description = $data['description'];
-    $ISBN = $data['ISBN'];
-    $genreId = $data['genre_id'];
 
-    $query = "INSERT INTO books (title, description, ISBN, genre_id) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO genres (name, description) VALUES (?, ?)";
     $stmt = $this->conn->prepare($query);
-    $stmt->bind_param("sssi", $title, $description, $ISBN, $genreId);
+    $stmt->bind_param("ss", $name, $description);
     $stmt->execute();
     $this->conn->close();
     return $stmt->insert_id;
@@ -80,24 +68,37 @@ class Genres extends DatabaseConfig
 
   public function update($data, $id)
   {
-    $title = $data['title'];
+    $name = $data['name'];
     $description = $data['description'];
-    $ISBN = $data['ISBN'];
-    $genreId = $data['genre_id'];
 
-    $query = "UPDATE books SET title = ?, description = ?, ISBN = ?, genre_id = ? WHERE id = ?";
+    $query = "UPDATE genres SET name = ?, description = ? WHERE id = ?";
     $stmt = $this->conn->prepare($query);
-    $stmt->bind_param("ssssi", $title, $description, $ISBN, $genreId, $id);
+    $stmt->bind_param("ssi", $name, $description, $id);
     $stmt->execute();
     $stmt->close();
+
+    $updatedData = $this->findById($id);
+    return $updatedData;
   }
 
   public function destroy($id)
   {
-    $query = "DELETE FROM books WHERE id = ?";
+    $dataToDelete = $this->findById($id);
+    if (!$dataToDelete) {
+      return null;
+    }
+
+    $query = "DELETE FROM genres WHERE id = ?";
     $stmt = $this->conn->prepare($query);
     $stmt->bind_param("i", $id);
     $stmt->execute();
+    $isDeleted = $stmt->execute();
     $this->conn->close();
+
+    if ($isDeleted) {
+      return $dataToDelete;
+    } else {
+      return null;
+    }
   }
 }
