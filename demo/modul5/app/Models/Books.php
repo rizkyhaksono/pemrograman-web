@@ -99,7 +99,7 @@ class Books extends DatabaseConfig
       return null;
     }
 
-    $query = "DELETE FROM books WHERE id = ?";
+    $query = "DELETE FROM books WHERE books.id = ?";
     $stmt = $this->conn->prepare($query);
     $stmt->bind_param("i", $id);
     $stmt->execute();
