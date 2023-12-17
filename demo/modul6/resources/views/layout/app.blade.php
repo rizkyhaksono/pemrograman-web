@@ -2,22 +2,26 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Documentation</title>
-    <link rel="stylesheet" href="{{ asset('css/documentation.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li>
-                <a href="{{ route('documentation') }}">API Documentation</a>
-            </li>
-        </ul>
-    </nav>
+    <header>
+        <nav>
 
-    <div>@yield('content')</div>
+            <a href="{{ route('documentation') }}" class="navbar-link">API Documentation</a>
+
+        </nav>
+    </header>
+
+    <div class="content-container">
+        @yield('content')
+    </div>
+
+    <script src="{{ asset('js/scripts.js') }}"></script>
 </body>
 
 </html>

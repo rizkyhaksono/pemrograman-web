@@ -4,8 +4,9 @@
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">API Documentation</li>
+                <li class="breadcrumb-item"><a href="{{ url('/') }}" class="home-link">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="#" class="home-link">API Documentation</a>
+                </li>
             </ol>
         </nav>
 
