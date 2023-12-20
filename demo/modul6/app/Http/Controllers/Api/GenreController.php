@@ -74,6 +74,6 @@ class GenreController extends Controller
 
         $genre->delete();
 
-        return response()->json(null, 204);
+        return response()->json(['message' => 'success', 'data' => $genre], 200);
     }
 }

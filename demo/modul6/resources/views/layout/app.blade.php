@@ -11,10 +11,12 @@
 <body>
     <header>
         <nav>
-
             <a href="{{ route('documentation') }}" class="navbar-link">API Documentation</a>
-
+            <a href="https://github.com/rizkyhaksono" target="blank" class="navbar-link">Postman Documentation</a>
         </nav>
+        <a href="https://github.com/rizkyhaksono" target="blank"
+            style="color: antiquewhite; display: inline-block; padding-top: 20px">by Rizky Haksono</a>
+
     </header>
 
     <div class="content-container">

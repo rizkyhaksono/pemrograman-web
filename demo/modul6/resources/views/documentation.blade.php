@@ -57,6 +57,20 @@
             </div>
         </div>
 
+        <div class="endpoint" onclick="toggleEndpoint('users')">
+            <h3>Users</h3>
+            <div id="users" class="details">
+                <p>Invalidate the access token and log out.</p>
+                <pre>
+                    <code>
+                        POST /api/logout
+                        Headers:
+                        - Authorization: Bearer {ACCESS_TOKEN}
+                    </code>
+                </pre>
+            </div>
+        </div>
+
     </div>
 
     <script>

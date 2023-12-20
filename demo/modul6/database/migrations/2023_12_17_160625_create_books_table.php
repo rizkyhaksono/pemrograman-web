@@ -19,7 +19,7 @@ class CreateBooksTable extends Migration
             $table->string('description');
             $table->string('ISBN');
             $table->unsignedBigInteger('genre_id');
-            $table->unsignedBigInteger('author_id');
+            $table->unsignedBigInteger('author_id')->default(0);
             $table->timestamps();
 
             $table->foreign('genre_id')->references('id')->on('genres');
